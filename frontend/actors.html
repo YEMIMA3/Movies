@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        background-color: black;
+        font-family: Arial, sans-serif;
+      }
+      p {
+        font-size: 50px;
+        font-style: italic;
+        text-align: center;
+        color: blue;
+        margin-top: 30px;
+      }
+      #actors-list {
+        color: white;
+        text-align: center;
+        font-size: 25px;
+        margin-top: 20px;
+        line-height: 45px;
+      }
+      button {
+        width: 150px;
+        height: 50px;
+        background-color: blue;
+        color: white;
+        border: none;
+        font-size: 20px;
+        font-style: italic;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 50px;
+      }
+      button:hover {
+        color: blue;
+        background-color: white;
+        border-radius: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Actors:</p>
+    <div id="actors-list">Loading...</div>
+
+    <div style="text-align: center;">
+      <button onclick="prev()">Prev</button>
+      <button onclick="next()">Next</button>
+    </div>
+
+    <script>
+      let currentPage = 1;
+
+      function loadActors(page) {
+        fetch(`http://localhost:7000/casts?page=${page}`)
+          .then(res => res.json())
+          .then(data => {
+            const listDiv = document.getElementById('actors-list');
+            if (data.length === 0 && page > 1) {
+              currentPage--; 
+              return;
+            }
+
+            if (data.length === 0) {
+              listDiv.innerHTML = `<div>No actors found.</div>`;
+              return;
+            }
+
+            listDiv.innerHTML = data.map(d => `<div>${d}</div>`).join('');
+          })
+          .catch(err => {
+            document.getElementById('actors-list').innerHTML = `<div>Error loading actors</div>`;
+          });
+        }
+
+      function prev() {
+        if (currentPage > 1) {
+          currentPage--;
+          loadActors(currentPage);
+        }
+      }
+
+      function next() {
+        currentPage++;
+        loadActors(currentPage);
+      }
+
+      // Initial load
+      loadActors(currentPage);
+    </script>
+  </body>
+</html>

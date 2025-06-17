@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        background-color: black;
+        font-family: Arial, sans-serif;
+      }
+      p {
+        font-size: 50px;
+        font-style: italic;
+        text-align: center;
+        color: blue;
+        margin-top: 30px;
+      }
+      #directors-list {
+        color: white;
+        text-align: center;
+        font-size: 25px;
+        margin-top: 20px;
+        line-height: 45px;
+      }
+      button {
+        width: 150px;
+        height: 50px;
+        background-color: blue;
+        color: white;
+        border: none;
+        font-size: 20px;
+        font-style: italic;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top:50px;
+      }
+      button:hover {
+        color: blue;
+        background-color: white;
+        border-radius: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Directors:</p>
+    <div id="directors-list">Loading...</div>
+
+    <div style="text-align: center;">
+      <button onclick="prev()">Prev</button>
+      <button onclick="next()">Next</button>
+    </div>
+
+    <script>
+      let currentPage = 1;
+
+      function loadDirectors(page) {
+        fetch(`http://localhost:7000/directors?page=${page}`)
+          .then(res => res.json())
+          .then(data => {
+            const listDiv = document.getElementById('directors-list');
+            if (data.length === 0 && page > 1) {
+              currentPage--; 
+              return;
+            }
+
+            if (data.length === 0) {
+              listDiv.innerHTML = `<div>No directors found.</div>`;
+              return;
+            }
+
+            listDiv.innerHTML = data.map(d => `<div>${d}</div>`).join('');
+          })
+          .catch(err => {
+            document.getElementById('directors-list').innerHTML = `<div>Error loading directors</div>`;
+          });
+      }
+
+      function prev() {
+        if (currentPage > 1) {
+          currentPage--;
+          loadDirectors(currentPage);
+        }
+      }
+
+      function next() {
+        currentPage++;
+        loadDirectors(currentPage);
+      }
+
+      // Initial load
+      loadDirectors(currentPage);
+    </script>
+  </body>
+</html>

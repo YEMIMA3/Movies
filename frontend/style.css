@@ -1,0 +1,149 @@
+body {
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 40px;
+  height: 90px;
+  color: rgb(4, 28, 148);
+  padding: 10px 40px;
+  background-image: linear-gradient(to right,rgba(0, 0, 0, 0.6) 20%,rgba(4, 28, 148, 0.4) 80%);
+  box-shadow: 0 5px 10px rgb(4, 28, 148);
+}
+
+p {
+  font-style: italic;
+  text-align: center;
+  font-size: 30px;
+}
+
+
+.search-form {
+  display: flex;
+  align-items: center;
+  margin-top:45px;
+  margin-right: 550px;
+}
+     
+.search-form input {
+  padding: 8px;
+  border: 2;
+  border-radius: 20px;
+  outline: none;
+  font-size: 16px;
+  width: 250px;
+  height:50px;
+  color:white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-form button {
+  width:50px;
+  height:45px;
+  margin-left:10px;
+  border:50px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  border-color: white;
+  background-color: rgba(255,255,255,0.7);
+}
+
+.search-form button:hover{
+ background-color: rgb(255,255,255);
+ border-color: white;
+}
+
+nav {
+  font-size:25px;
+  position: absolute;
+  top: 40px;
+  right: 60px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 1.2em;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  text-decoration:underline;
+  color: #f7d1d1;
+}
+
+.top-box {
+  display: inline-block;
+  padding: 20px 40px;
+  margin-top: 100px;
+  background-color: grey;
+  color: black;
+  font-size: 24px;
+  font-style: italic;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.top-box:hover {
+  color:white;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 10px white;
+  transform: scale(1.05);
+}
+
+.img {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 50px;
+  padding-top: 50px;
+  margin-left:55px;
+}
+
+.img img {
+  width: 200px;
+  height: 300px;
+  animation: slideUp 0.8s ease;
+  transition: transform 0.3s ease;
+  box-shadow:0 5px 15px rgb(4, 28, 148); 
+}
+.img img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 10px white;
+}
+.poster-container {
+  position: relative;
+  width: 200px;
+  height: 300px;
+}
+
+.poster-number {
+  position: absolute;
+  top: -50px;
+  left: -40px;
+  font-size: 120px;
+  font-weight: bold;
+  color: white;
+  -webkit-text-stroke: 2px black;
+  z-index: 1;
+}
+#movie-details {
+  font-family: italic;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height:50px;
+}
+
